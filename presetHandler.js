@@ -3,18 +3,22 @@ const presets = require('./presets');
 
 // Complete this function:
 const presetHandler = (reqType, index, newPresetArray) => {
-    if (!index ){
-        return ['404'];
+    if (index === NaN || index < 0 || index > presets.length ){
+        return [404];
     }
-    if (index){
-        let validRequest = ['200'];
-        if (reqType = 'GET'){
-            validRequest.push();
-        }
+    if (reqType !== 'GET' && reqType !== 'PUT'){
+        return [400];
+    } 
+    let validRequest = [200];
+    //console.log(validRequest);
+    if (reqType === 'GET'){
+        validRequest.push(presets[index]);
+        //console.log(validRequest);
         return validRequest;
-    }
-    if (reqType !== 'GET' || reqType !== 'PUT'){
-        return ['400'];
+    } else if (reqType === 'PUT'){
+        presets[index] = newPresetArray;
+        validRequest.push(presets[index]);
+        return validRequest;
     }
 };
 

@@ -58,3 +58,9 @@ const invert = (arrayName) => {
         });
     }
 };
+
+const getNeighborPads = (x, y, size) => {
+    let neighbors = [];
+    neighbors = []
+    return neighbors;
+}
