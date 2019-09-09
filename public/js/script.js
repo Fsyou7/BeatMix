@@ -60,7 +60,51 @@ const invert = (arrayName) => {
 };
 
 const getNeighborPads = (x, y, size) => {
-    let neighbors = [];
-    neighbors = []
-    return neighbors;
+    var pad =`${x},${y}`;
+    var neighbors = []; 
+    if (x < 0 || x > 4 || y < 0 || y > 4 || size !== 5){
+        return [];
+    }
+    
+    switch (pad) {
+        case '0,0':
+            neighbors = [[0, 1], [1, 0]];
+            return neighbors;
+        case '0,4':
+            neighbors = [[0, 3], [1, 4]];
+            return neighbors;
+        case '4,4':
+            neighbors = [[4, 3], [3, 4]];
+            return neighbors;
+        case '4,0':
+            neighbors = [[3, 0], [4, 1]];
+            return neighbors;
+        default:
+            switch (pad) {
+                case '0,1':
+                case '0.2':
+                case '0,3':
+                    neighbors = [[x, y-1], [x, y+1], [x+1, y]];
+                    return neighbors;
+                case '1,0':
+                case '2,0':
+                case '3,0':
+                    neighbors = [[x-1, y], [x+1, y], [x, y+1]];
+                    return neighbors;
+                case '4,1':
+                case '4,2':
+                case '4,3':
+                    neighbors = [[x, y-1], [x, y+1], [x-1, y]];
+                    return neighbors;
+                case '1,4':
+                case '2,4':
+                case '3,4':
+                    neighbors = [[x-1, y], [x+1, y], [x, y-1]];
+                    return neighbors;
+                default:
+                    neighbors = [[x-1, y], [x, y-1], [x+1, y], [x, y+1]];
+                    return neighbors;
+            break;
+            }
+    }
 }
